@@ -13,15 +13,32 @@ namespace GradeBook.GradeBooks
         }
         public override char GetLetterGrade(double averageGrade)
         {
-            if (Students.Count() > 25) { Console.WriteLine("A")} else;
-            if (Students.Count() > 20) { } else Console.WriteLine("B");
-            if (Students.Count() > 15) { } else Console.WriteLine("C");
-            if (Students.Count() > 10) { } else Console.WriteLine("D");
-            if (Students.Count() > 5) { } else Console.WriteLine("F");
+            if (Students.Count() < 5)
             {
                 InvalidOperationException invalidOperationException = new InvalidOperationException;
                 throw invalidOperationException;
             }
+            else
+            {
+                if (averageGrade >= 0.8 && averageGrade <= 1)
+                {
+                    return 'A';
+                }
+                else if (averageGrade >= 0.6 && averageGrade < 0.8)
+                {
+                    return 'B';
+                }
+                else if (averageGrade >= 0.4 && averageGrade < 0.6)
+                {
+                    return 'C';
+                }
+                else if (averageGrade >= 0.2 && averageGrade < 0.4)
+                {
+                    return 'D';
+                }
+                return 'F';
+            }
+            
         }
     }
 }
