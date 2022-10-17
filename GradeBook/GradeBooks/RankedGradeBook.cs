@@ -13,32 +13,27 @@ namespace GradeBook.GradeBooks
         }
         public override char GetLetterGrade(double averageGrade)
         {
+            var threshold = (int)Math.Ceiling(Students.Count * 0.2);
+            var grades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
+
             if (Students.Count() < 5)
             {
                 InvalidOperationException invalidOperationException = new InvalidOperationException();
                 throw invalidOperationException;
             }
+
+            else if (grades[threshold - 1] <= averageGrade)
+                return 'A';
+            else if (grades[(threshold * 2) - 1]) <= averageGrade)
+                return 'B';
+            else if(grades[(threshold * 3) - 1]) <= averageGrade)
+                return 'C';
+            else if(grades[(threshold * 4) - 1]) <= averageGrade)
+                return 'D';
             else
-            {
-                if (averageGrade >= 0.8 && averageGrade <= 1)
-                {
-                    return 'A';
-                }
-                else if (averageGrade >= 0.6 && averageGrade < 0.8)
-                {
-                    return 'B';
-                }
-                else if (averageGrade >= 0.4 && averageGrade < 0.6)
-                {
-                    return 'C';
-                }
-                else if (averageGrade >= 0.2 && averageGrade < 0.4)
-                {
-                    return 'D';
-                }
                 return 'F';
-            }
-            
+
+            return base.GetLetterGrade(averageGrade);
         }
     }
 }
