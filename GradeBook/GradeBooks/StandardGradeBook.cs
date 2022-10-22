@@ -7,7 +7,7 @@ namespace GradeBook.GradeBooks
 {
     public class StandardGradeBook : BaseGradeBook
     {
-        private new bool isWeighted;
+        private bool isWeighted;
 
         public bool GetisWeighted()
         {
@@ -19,7 +19,7 @@ namespace GradeBook.GradeBooks
             isWeighted = value;
         }
 
-        public StandardGradeBook(string name, bool weighted) : base(name)
+        public StandardGradeBook(string name, bool isWeighted) : base(name, isWeighted)
         {
             Type = Enums.GradeBookType.Standard;
         }
