@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-
 using GradeBook.Enums;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using GradeBook.GradeBooks;
 
 namespace GradeBook.GradeBooks
 {
@@ -16,7 +16,7 @@ namespace GradeBook.GradeBooks
         public List<Student> Students { get; set; }
         public bool isWeighted { get; set; }
 
-        public BaseGradeBook(string name, bool isWeighted) : base(name, isWeighted)
+        public BaseGradeBook(string name, bool isWeighted)
         {
             Name = name;
             Students = new List<Student>();
@@ -132,7 +132,7 @@ namespace GradeBook.GradeBooks
                     gpa = 0;
                     break;
             }
-            if (isWeighted && (studentType == studentType.Honors || studentType.DualEnrolled))
+            //if (isWeighted && (studentType == studentType.Honors || studentType.DualEnrolled))
                 gpa++;
             return gpa;
         }
